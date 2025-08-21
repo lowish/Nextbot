@@ -1,0 +1,1006 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+  --EVA-ROTATION-DURATION: 4s;
+}
+
+body {
+    font-family: 'Exo 2', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #000000;
+    font-weight: 600;
+    letter-spacing: 0.15px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation Header */
+.navbar {
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Header hide/show on scroll */
+.navbar.hidden{
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+}
+
+.nav-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    margin-top: 15px;
+}
+
+.nav-logo{
+    flex: 0 0 auto;
+}
+
+.nav-logo h2 {
+    color: #000000;
+    font-size: 1.8rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-family: 'Audiowide', 'Orbitron', 'Arial Black', 'Helvetica Black', sans-serif;
+    
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    color: rgb(0, 0, 0);
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-item {
+    position: relative;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.nav-link {
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    color: #000000;
+    letter-spacing: 0.5px;
+}
+
+.nav-link.active {
+    color: #000000;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #000000;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+    width: 80%;
+}
+
+.nav-link.active::after {
+    background: #000000;
+    width: 80%;
+}
+
+/* Right-side theme toggle (moon) */
+.theme-toggle{
+    flex: 0 0 auto;
+    margin-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.theme-toggle-btn{
+    position: relative;
+}
+
+.theme-toggle-btn input{
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.theme-toggle-btn{
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(0,0,0,0.06);
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.12s ease;
+}
+
+/* Ensure navbar SVGs don't inherit the global 50px margin */
+.navbar svg{
+    margin-top: 0;
+}
+
+/* Size the moon icon explicitly inside the toggle */
+.theme-toggle-btn svg{
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    display: block;
+}
+
+.theme-toggle-btn:active{
+    transform: scale(0.96);
+}
+
+.theme-toggle-btn .icon-moon path{
+    fill: #000000;
+}
+
+/* Dark mode styles for navbar and toggle */
+body[data-theme="dark"] .nav-container{
+    background-color: #101014;
+}
+
+body[data-theme="dark"] .nav-logo h2{
+    color: #ffffff;
+}
+
+body[data-theme="dark"] .nav-link{
+    color: #ffffff;
+}
+
+body[data-theme="dark"] .nav-link::after,
+body[data-theme="dark"] .nav-link.active::after{
+    background: #ffffff;
+}
+
+body[data-theme="dark"] .nav-link.active{
+    background: rgba(255,255,255,0.12);
+}
+
+body[data-theme="dark"] .theme-toggle-btn{
+    border-color: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.10);
+}
+
+body[data-theme="dark"] .theme-toggle-btn .icon-moon path{
+    fill: #ffffff;
+}
+
+/* SVG Styling */
+svg {
+    width: 100%;
+    height: 100%;
+    margin-top: 50px;
+    font-family: 'Raleway', sans-serif;
+}
+
+/* SVG text styling and animation */
+svg text {
+    text-transform: uppercase;
+    font-size: 8rem;
+    animation: stroke 5s infinite alternate;
+    stroke-width: 2;
+    stroke: #000000;
+    fill: transparent;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+/* Stroke animation keyframes */
+@keyframes stroke {
+    0% {
+        stroke-dasharray: 0 1000;
+        stroke-dashoffset: 0;
+    }
+    50% {
+        stroke-dasharray: 1000 0;
+        stroke-dashoffset: 0;
+    }
+    100% {
+        stroke-dasharray: 0 1000;
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Main Content */
+main {
+    margin-top: 70px;
+    background-color: #000000;
+}
+
+.section {
+    min-height: 100vh;
+    position: relative;
+    background-color: #000000;
+}
+
+/* Home Section */
+#home {
+    padding: 0;
+    background-color: #000000;
+}
+
+#home iframe {
+    width: 100%;
+    height: 100vh;
+    border: none;
+}
+
+/* About Section */
+#about {
+    background-image: url('airemove.png');
+    background-repeat: no-repeat;
+    background-size: 400px;
+    background-position: right center;
+    color: white;
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#about h1 {
+    font-size: 55px;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    
+}
+
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.about-text h2 {
+    font-size: 32px;
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+    font-weight: 550;
+    letter-spacing: 0.25px;
+    text-align: center;
+    font-family: 'Audiowide', sans-serif;
+}
+
+.learn-more-btn{
+    display: inline-block;
+    margin-top: 14px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #ffffff, #ffffff);
+    color: #000000;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 0.6px;
+    box-shadow: 0 12px 30px rgba(255, 255, 255, 0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+    margin-left: 200px;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.learn-more-btn:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(99,102,241,0.4);
+    filter: brightness(1.05);
+}
+
+.learn-more-btn:active{
+    transform: translateY(0);
+}
+
+.about-features {
+    display: grid;
+    margin-top: 10px;
+    gap: 2rem;
+    width: 80%;
+}
+
+.feature {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 28px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-family: 'Audiowide', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.feature p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    font-weight: 1000;
+    color: #b6b4b4;
+    font-family:'Orbitron', sans-serif;
+}
+
+/* Explore Section */
+#explore {
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    color: white;
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+#explore h2 {
+    font-size: 55px;
+    margin-bottom: 3rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-top: 40px;
+}
+
+.explore-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+}
+
+/* Top/Bottom fade for Explore section */
+#explore::before,
+#explore::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#explore::before {
+  content: '';
+  position: absolute;
+  left: -10%;
+  top: -10%;
+  width: 120%;
+  height: 120%;
+  background:
+      radial-gradient(closest-side at 25% 30%, rgba(0, 153, 255, 0.35), transparent 60%),
+      radial-gradient(closest-side at 75% 30%, rgba(255, 0, 153, 0.30), transparent 60%),
+      conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.06), rgba(0,0,0,0.0) 50%, rgba(255,255,255,0.06));
+  filter: url(#aboutDeform) blur(5px);
+  opacity: 1;
+  animation: aboutBgDrift 20s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+#explore::after {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+}
+
+/* Right fade overlay for Explore section */
+#explore .container{
+    position: relative;
+    z-index: 1;
+}
+
+#explore .container::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 160px;
+    height: 100%;
+
+    pointer-events: none;
+    z-index: 3;
+}
+
+.eva-robot-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.explore-info {
+    text-align: center;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2.5rem;
+    border-radius: 30px;
+    backdrop-filter: blur(15px);
+    position: relative;
+    z-index: 1;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.explore-info h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ffffff;
+    font-family: 'Audiowide', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.explore-info p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    font-weight: 1000;
+    color: #b6b4b4;
+    font-family:'Orbitron', sans-serif;
+}
+
+/* From Uiverse.io by Cornerstone-04 */ 
+.cards {
+  perspective: 500px;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-3d {
+  width: 200px;
+  height: 250px;
+  background: #16161d;
+  border: 2px solid #555555;
+  border-radius: 4px;
+  position: relative;
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform .5s;
+}
+
+.card-3d:hover {
+  transform: translateZ(10px) rotateX(20deg) rotateY(20deg);
+}
+
+.card_title {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  transition: transform .5s;
+  font: 700 1.5rem monospace;
+  text-shadow: -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
+}
+
+.card-3d:hover .card_title {
+  transform: translateZ(50px);
+}
+
+/* Card Image Styling */
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 2px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.card_title {
+  z-index: 2;
+  position: relative;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* EVA Robot Model */
+.modelViewPort{
+  perspective: 1000px;
+  width: 20rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  overflow: hidden;
+  margin-top: 100px;
+}
+
+.eva{
+  transform-style: preserve-3d;
+  animation: rotateRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+}
+
+.head{
+  position: relative;
+  width: 6rem;
+  height: 4rem;
+  border-radius: 48% 53% 45% 55% / 79% 79% 20% 22% ;
+  background: linear-gradient(to right, white 45%, gray);
+}
+
+.eyeChamber{
+  width: 4.5rem;
+  height: 2.75rem;
+  position: relative;
+  left: 50%;
+  top: 55%;
+  border-radius: 45% 53% 45% 48% / 62% 59% 35% 34% ;
+  background-color: #0C203C;
+  box-shadow: 0px 0px 2px 2px white, inset 0px 0px 0px 2px black;
+  transform: translate(-50%, -50%);
+  animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+}
+
+.eye{
+  width: 1.2rem;
+  height: 1.5rem;
+  position: absolute;
+  border-radius: 50%;
+}
+
+.eye:first-child{
+  left: 12px;
+  top: 50%;
+   background: repeating-linear-gradient(
+    65deg, 
+    #9bdaeb 0px, 
+    #9bdaeb 1px,
+    white 2px
+  );
+  box-shadow: inset 0px 0px 5px #04B8D5, 0px  0px 15px 1px #0bdaeb;
+  transform: translate(0, -50%) rotate(-65deg);
+}
+
+.eye:nth-child(2){
+  right: 12px;
+  top: 50%;
+  background: repeating-linear-gradient(
+    -65deg, 
+    #9bdaeb 0px, 
+    #9bdaeb 1px,
+    white 2px
+  );
+  box-shadow: inset 0px 0px 5px #04B8D5, 0px  0px 15px 1px #0bdaeb;
+  transform: translate(0, -50%) rotate(65deg);
+}
+
+.body{
+  width: 6rem;
+  height: 8rem;
+  position: relative;
+  margin-block-start: 0.25rem;
+  border-radius: 47% 53% 45% 55% / 12% 9% 90% 88%;
+  background: linear-gradient(to right, white 35%, gray);
+}
+
+.hand{
+  position: absolute;
+  left: -1.5rem;
+  top: .75rem;
+  width: 2rem;
+  height: 5.5rem;
+  border-radius: 40%;
+  background: linear-gradient(to left, white 15%, gray);
+  box-shadow: 5px 0px 5px rgba(0, 0, 0, 0.25);
+  transform: rotateY(55deg) rotateZ(10deg);
+}
+
+.hand:first-child{
+  animation: compensateRotation var(--EVA-ROTATION-DURATION) linear infinite alternate;
+}
+
+.hand:nth-child(2){
+  left: 92%;
+  background: linear-gradient(to right, white 15%, gray);
+  transform: rotateY(55deg) rotateZ(-10deg);
+  animation: compensateRotationRight var(--EVA-ROTATION-DURATION) linear infinite alternate;
+}
+
+.scannerThing{
+  width: 0;
+  height: 0;
+  position: absolute;
+  left: 60%;
+  top: 10%;
+  border-top: 180px solid #9bdaeb;
+  border-left: 250px solid transparent;
+  border-right: 250px solid transparent;
+  transform-origin: top left; 
+  mask: linear-gradient(to right, white, transparent 35%);
+  animation: glow 2s cubic-bezier( 0.86, 0, 0.07, 1 ) infinite;
+}
+
+.scannerOrigin{
+  position: absolute;
+  width: 8px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  left: 60%;
+  top: 10%;
+  background: #9bdaeb;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.5);
+  animation: moveRight var(--EVA-ROTATION-DURATION) linear infinite;
+}
+
+/* EVA Robot Animations */
+@keyframes rotateRight{
+  from{
+    transform: rotateY(0deg);
+  }
+  to{transform: rotateY(25deg)}
+}
+
+@keyframes moveRight{
+  from{transform: translate(-50%, -50%)}
+  to{transform: translate(-40%, -50%)}
+}
+
+@keyframes compensateRotation{
+  from{
+    transform: rotateY(55deg) rotateZ(10deg);
+  }
+  to{
+    transform: rotatey(30deg) rotateZ(10deg);
+  }
+}
+
+@keyframes compensateRotationRight{
+  from{
+     transform: rotateY(55deg) rotateZ(-10deg); 
+  }
+  to{
+    transform: rotateY(70deg) rotateZ(-10deg);
+  }
+}
+
+@keyframes glow{
+  from{
+    opacity: 0;
+  }
+  20%{
+    opacity: 1;
+  }
+  45%{
+    transform: rotate(-25deg)
+  }
+  75%{
+    transform: rotate(5deg)
+  }    
+  100%{
+    opacity: 0;
+  }
+}
+
+/* Learn More Section */
+#learn-more {
+    background: linear-gradient(135deg, #000000 0%, #000000 100%);
+    color: white;
+    padding: 80px 0;
+    display: flex;
+    align-items: center;
+}
+
+#learn-more h2 {
+    font-size: 55px;
+    margin-bottom: 3rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.learn-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.learn-text p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+    font-weight: 700;
+
+}
+
+.learn-resources {
+    display: grid;
+    gap: 2rem;
+}
+
+.resource {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 28px;
+    border-radius: 25px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.resource:hover {
+    transform: translateY(-5px);
+}
+
+.resource h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    font-family: 'Audiowide', sans-serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.resource p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    font-weight: 1000;
+    color: #b6b4b4;
+    font-family:'Orbitron', sans-serif
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-content,
+    .learn-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .modelViewPort {
+        width: 15rem;
+    }
+    
+    #about h1,
+    #explore h2,
+    #learn-more h2 {
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+
+    /* Scale down the About background image on tablets */
+    #about {
+        background-size: 500px;
+        background-position: center top;
+    }
+}
+
+@media (max-width: 480px) {
+    .modelViewPort {
+        width: 12rem;
+    }
+    
+    #about h1,
+    #explore h2,
+    #learn-more h2 {
+        font-size: 2rem;
+    }
+    
+    .about-text p,
+    .learn-text p {
+        font-size: 1rem;
+    }
+
+    /* Scale down further on phones */
+    #about {
+        background-size: 340px;
+        background-position: center top;
+    }
+}
+
+.footer-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color:rgba(126, 123, 123, 0.255);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Back-to-top button */
+.to-top{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    width: 66px;
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    z-index: 1100;
+}
+
+.to-top.active{
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* About Section Deforming Background */
+#about{
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+#about .container{
+    position: relative;
+    z-index: 1;
+}
+
+#about::before{
+    content: '';
+    position: absolute;
+    left: -10%;
+    top: -10%;
+    width: 120%;
+    height: 120%;
+    background:
+        radial-gradient(closest-side at 20% 30%, rgba(0, 153, 255, 0.35), transparent 60%),
+        radial-gradient(closest-side at 80% 70%, rgba(255, 0, 153, 0.30), transparent 60%),
+        conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0.06), rgba(0,0,0,0.0) 50%, rgba(255,255,255,0.06));
+    filter: url(#aboutDeform) blur(18px);
+    opacity: 0.9;
+    animation: aboutBgDrift 20s ease-in-out infinite alternate;
+    z-index: 0;
+    pointer-events: none;
+}
+
+@keyframes aboutBgDrift{
+    0%{
+        transform: translate3d(0, 0, 0) scale(1.05) rotate(0deg);
+    }
+    100%{
+        transform: translate3d(-2%, 2%, 0) scale(1.12) rotate(12deg);
+    }
+}
+
+
+
+
+.scene {
+  width: 200px;
+  height: 200px;
+  perspective: 600px;
+}
+
+/* Cube Container */
+.cube {
+  width: 100%;
+  height: 100%;
+  margin-left: 150px;
+  position: relative;
+  transform-style: preserve-3d;
+  animation: rotate-cube 8s infinite linear;
+}
+
+/* General Face Styling */
+.face {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border: 1px solid #555;
+  background-size: cover; /* Ensures the image covers the face */
+  background-position: center; /* Centers the image on the face */
+}
+
+/* Individual Faces with Background Images and Positions */
+.front {
+  background-image: url('aigirl.jpg');
+  transform: rotateY(0deg) translateZ(100px);
+}
+
+.back {
+  background-image: url('aura.png');
+  transform: rotateY(180deg) translateZ(100px);
+}
+
+.right {
+  background-image: url('robot.jpg');
+  transform: rotateY(90deg) translateZ(100px);
+}
+
+.left {
+  background-image: url('botzzz.jpg');
+  transform: rotateY(-90deg) translateZ(100px);
+}
+
+.top {
+  background-image: url('botzzz.jpg');
+  transform: rotateX(90deg) translateZ(100px);
+}
+
+.bottom {
+  background-image: url('airemove.png');
+  transform: rotateX(-90deg) translateZ(100px);
+}
+
+/* Animation Keyframes */
+@keyframes rotate-cube {
+  from {
+    transform: rotateY(0deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(360deg) rotateX(360deg);
+  }
+}
+
