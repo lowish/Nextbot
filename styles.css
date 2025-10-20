@@ -269,7 +269,9 @@ main {
 
 /* About Section */
 #about {
+
     background-image: url('airemove.png');
+    background-image: url('images/airemove.png');
     background-repeat: no-repeat;
     background-size: 400px;
     background-position: right center;
@@ -965,32 +967,56 @@ main {
 
 /* Individual Faces with Background Images and Positions */
 .front {
+
   background-image: url('aigirl.jpg');
+
+  background-image: url('images/aigirl.jpg');
+
   transform: rotateY(0deg) translateZ(100px);
 }
 
 .back {
+
   background-image: url('aura.png');
+
+  background-image: url('images/aura.png');
+
   transform: rotateY(180deg) translateZ(100px);
 }
 
 .right {
+
   background-image: url('robot.jpg');
+
+  background-image: url('images/robot.jpg');
+
   transform: rotateY(90deg) translateZ(100px);
 }
 
 .left {
+
   background-image: url('botzzz.jpg');
+
+  background-image: url('images/botzzz.jpg');
+
   transform: rotateY(-90deg) translateZ(100px);
 }
 
 .top {
+
   background-image: url('botzzz.jpg');
+
+  background-image: url('images/botzzz.jpg');
+
   transform: rotateX(90deg) translateZ(100px);
 }
 
 .bottom {
+
   background-image: url('airemove.png');
+
+  background-image: url('images/aigirl.jpg');
+
   transform: rotateX(-90deg) translateZ(100px);
 }
 
